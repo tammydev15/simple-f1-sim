@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>APEX GP — F1 Simulator</title>
+<title>APEX GP — F1 Simulator</title>ontrols
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -168,7 +168,690 @@
   #results .swatch{width:10px;height:10px;border-radius:50%; display:inline-block; margin-right:8px;}
 
   footer.credit{position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:10px; color:#3d444d; z-index:3; font-family:'JetBrains Mono',monospace;}
+
+/* ================= MOBILE CONTROLS ================= */
+
+#mobileControls {
+  display: none;
+}
+
+
+/* ================= MOBILE / LANDSCAPE RACING HUD ================= */
+
+#mobileControls {
+  display: none;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+
+  html,
+  body {
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+
+  /* =========================================================
+     MOBILE HUD
+     ========================================================= */
+
+  #hud {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- TOP LEFT ---------- */
+
+  #topbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    display: flex;
+    gap: 6px;
+
+    max-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .chip {
+    min-width: 62px;
+
+    padding: 5px 9px;
+
+    border-left-width: 3px;
+    border-radius: 4px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(20,24,29,.94),
+        rgba(11,13,16,.82)
+      );
+
+    box-shadow:
+      0 4px 16px rgba(0,0,0,.25);
+  }
+
+  .chip .label {
+    font-size: 8px;
+    letter-spacing: .12em;
+  }
+
+  .chip .value {
+    font-size: 17px;
+    line-height: 1.05;
+  }
+
+  .chip.tyre {
+    min-width: 76px;
+  }
+
+  .chip.tyre .value {
+    font-size: 14px !important;
+  }
+
+  .tyreBarTrack {
+    width: 58px;
+    height: 5px;
+    margin-top: 3px;
+  }
+
+
+  /* ---------- SECTORS ---------- */
+
+  #sectors {
+    top: 66px;
+    left: 10px;
+
+    gap: 4px;
+  }
+
+  .sector {
+    min-width: 47px;
+
+    padding: 3px 6px;
+
+    font-size: 8px;
+
+    background: rgba(20,24,29,.72);
+  }
+
+  .sector b {
+    font-size: 10px;
+  }
+
+
+  /* ---------- LAP TIMER ---------- */
+
+  #timers {
+    top: 10px;
+    right: 10px;
+
+    min-width: 125px;
+
+    padding: 6px 10px;
+
+    border-right-width: 3px;
+
+    border-radius: 4px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(20,24,29,.94),
+        rgba(11,13,16,.82)
+      );
+
+    box-shadow:
+      0 4px 16px rgba(0,0,0,.25);
+  }
+
+  #timers .label {
+    font-size: 7px;
+    letter-spacing: .12em;
+  }
+
+  #timers .value {
+    font-size: 13px;
+    line-height: 1.05;
+  }
+
+
+  /* ---------- REMOVE DESKTOP ELEMENTS ---------- */
+
+  #leaderboard,
+  #minimap,
+  #controlsHint {
+    display: none;
+  }
+
+
+  /* =========================================================
+     BOTTOM TELEMETRY
+     ========================================================= */
+
+  #telemetry {
+    position: absolute;
+
+    left: 50%;
+    right: auto;
+    bottom: 9px;
+
+    transform: translateX(-50%);
+
+    padding: 0;
+
+    align-items: flex-end;
+  }
+
+  #telemetry .panel {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 7px 13px;
+
+    min-width: 330px;
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(20,24,29,.72),
+        rgba(8,10,12,.94)
+      );
+
+    box-shadow:
+      0 8px 28px rgba(0,0,0,.4);
+
+    backdrop-filter: blur(10px);
+  }
+
+
+  /* ---------- SPEED ---------- */
+
+  #speedBlock {
+    min-width: 65px;
+
+    text-align: center;
+  }
+
+  #speedBlock .num {
+    font-size: 42px;
+    line-height: .85;
+
+    letter-spacing: -.02em;
+  }
+
+  #speedBlock .unit {
+    font-size: 7px;
+    letter-spacing: .18em;
+  }
+
+
+  /* ---------- GEAR ---------- */
+
+  #gearBlock {
+    width: 38px;
+    height: 38px;
+
+    border: 2px solid rgba(245,245,240,.65);
+    border-radius: 4px;
+
+    font-size: 20px;
+  }
+
+
+  /* ---------- RPM ---------- */
+
+  #rpmWrap {
+    width: 82px;
+  }
+
+  #rpmTrack {
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .barlabel {
+    font-size: 7px;
+    margin-top: 2px;
+  }
+
+
+  /* ---------- THROTTLE / BRAKE BARS ---------- */
+
+  .bars {
+    height: 36px;
+    gap: 4px;
+  }
+
+  .bar {
+    width: 7px;
+    border-radius: 2px;
+  }
+
+
+  /* ---------- DRS / DRAFT ---------- */
+
+  #drsLight,
+  #draftLight {
+    width: 48px;
+
+    padding: 5px 4px;
+
+    border-radius: 4px;
+
+    font-size: 8px;
+  }
+
+
+  /* =========================================================
+     TOUCH CONTROLS
+     ========================================================= */
+
+  #mobileControls {
+    display: block;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+  }
+
+
+  /* ---------- CONTROL GROUPS ---------- */
+
+  .mobileSide {
+    position: absolute;
+
+    bottom: 15px;
+
+    display: flex;
+
+    gap: 10px;
+
+    pointer-events: auto;
+  }
+
+
+  /* ---------- STEERING ---------- */
+
+  #steeringControls {
+    left: 15px;
+  }
+
+
+  /* ---------- THROTTLE / BRAKE ---------- */
+
+  #driveControls {
+    right: 15px;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+  }
+
+
+  /* ---------- BASE BUTTON ---------- */
+
+  .touchBtn {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255,255,255,.20);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(35,40,47,.92),
+        rgba(15,18,22,.92)
+      );
+
+    color: var(--ink);
+
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 900;
+
+    font-size: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    touch-action: none;
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.08),
+      0 5px 18px rgba(0,0,0,.3);
+
+    transition:
+      transform .08s,
+      background .08s,
+      border-color .08s;
+  }
+
+
+  .touchBtn:active,
+  .touchBtn.pressed {
+    transform: scale(.90);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(225,6,0,.9),
+        rgba(150,4,0,.9)
+      );
+
+    border-color: rgba(255,255,255,.5);
+  }
+
+
+  /* ---------- STEERING BUTTONS ---------- */
+
+  #leftBtn,
+  #rightBtn {
+    width: 70px;
+    height: 70px;
+
+    font-size: 30px;
+  }
+
+
+  /* ---------- THROTTLE ---------- */
+
+  #throttleBtn {
+    width: 78px;
+    height: 78px;
+
+    font-size: 15px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(0,210,190,.28),
+        rgba(0,90,82,.32)
+      );
+
+    border-color: rgba(0,210,190,.65);
+  }
+
+
+  /* ---------- BRAKE ---------- */
+
+  #brakeBtn {
+    width: 58px;
+    height: 58px;
+
+    font-size: 10px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(225,6,0,.25),
+        rgba(80,5,4,.35)
+      );
+
+    border-color: rgba(225,6,0,.55);
+  }
+
+
+  /* ---------- DRS BUTTON ---------- */
+
+  #drsBtn {
+    position: absolute;
+
+    right: 112px;
+    bottom: 42px;
+
+    width: 55px;
+    height: 55px;
+
+    font-size: 10px;
+
+    color: var(--amber);
+
+    border-color: rgba(255,184,0,.65);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255,184,0,.16),
+        rgba(70,50,0,.28)
+      );
+
+    pointer-events: auto;
+  }
+
+
+  /* =========================================================
+     START SCREEN
+     ========================================================= */
+
+  h1.title {
+    font-size: clamp(38px, 13vw, 65px);
+  }
+
+  .subtitle {
+    font-size: 13px;
+    max-width: 330px;
+  }
+
+  .keyrow {
+    display: none;
+  }
+
+  .diffRow {
+    gap: 6px;
+  }
+
+  .diffBtn {
+    padding: 8px 11px;
+    font-size: 11px;
+  }
+
+  .startBtn {
+    font-size: 17px;
+    padding: 14px 30px;
+  }
+
+  footer.credit {
+    display: none;
+  }
+}
+
+
+/* =============================================================
+   EXTRA SMALL LANDSCAPE PHONES
+   ============================================================= */
+
+@media (max-height: 430px) and (orientation: landscape) {
+
+  #topbar {
+    top: 7px;
+    left: 7px;
+  }
+
+  .chip {
+    padding: 4px 7px;
+    min-width: 55px;
+  }
+
+  .chip .value {
+    font-size: 15px;
+  }
+
+  #sectors {
+    top: 57px;
+    left: 7px;
+  }
+
+  #timers {
+    top: 7px;
+    right: 7px;
+
+    min-width: 112px;
+
+    padding: 5px 8px;
+  }
+
+  #timers .value {
+    font-size: 12px;
+  }
+
+  /* Give the track more visual space */
+
+  #telemetry {
+    bottom: 5px;
+  }
+
+  #telemetry .panel {
+    gap: 7px;
+    padding: 5px 9px;
+    min-width: 300px;
+  }
+
+  #speedBlock .num {
+    font-size: 35px;
+  }
+
+  #gearBlock {
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+
+  #rpmWrap {
+    width: 68px;
+  }
+
+  .bars {
+    height: 30px;
+  }
+
+  #drsLight,
+  #draftLight {
+    width: 42px;
+    font-size: 7px;
+  }
+
+  #steeringControls {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  #driveControls {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  #leftBtn,
+  #rightBtn {
+    width: 60px;
+    height: 60px;
+  }
+
+  #throttleBtn {
+    width: 68px;
+    height: 68px;
+  }
+
+  #brakeBtn {
+    width: 52px;
+    height: 52px;
+  }
+
+  #drsBtn {
+    right: 92px;
+    bottom: 35px;
+
+    width: 48px;
+    height: 48px;
+  }
+}
+
+
+/* =============================================================
+   VERY SHORT LANDSCAPE SCREENS
+   ============================================================= */
+
+@media (max-height: 350px) and (orientation: landscape) {
+
+  #sectors {
+    display: none;
+  }
+
+  #topbar {
+    transform: scale(.88);
+    transform-origin: top left;
+  }
+
+  #timers {
+    transform: scale(.88);
+    transform-origin: top right;
+  }
+
+  #telemetry .panel {
+    transform: scale(.88);
+  }
+}
+
+/* ================= TILT STEERING ================= */
+
+#tiltBtn {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+
+  width: 58px;
+  height: 34px;
+
+  border-radius: 17px;
+
+  font-size: 9px;
+  letter-spacing: .08em;
+
+  color: var(--ink-dim);
+
+  background: rgba(20,24,29,.82);
+  border: 1px solid var(--panel-line);
+
+  pointer-events: auto;
+}
+
+#tiltBtn.active {
+  color: #04211d;
+  background: var(--teal);
+  border-color: var(--teal);
+
+  box-shadow:
+    0 0 16px rgba(0,210,190,.35);
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+  #tiltBtn {
+    bottom: 10px;
+    width: 52px;
+    height: 30px;
+  }
+}
+
 </style>
+
 </head>
 <body>
 <div id="stage">
@@ -208,6 +891,16 @@
       <div><b>SHIFT</b> DRS&nbsp;&nbsp;<b>C</b> camera&nbsp;&nbsp;<b>G</b> ghost&nbsp;&nbsp;<b>R</b> restart&nbsp;&nbsp;<b>M</b> mute</div>
     </div>
 
+<!-- MOBILE ORIENTATION OVERLAY -->
+<div id="orientationOverlay" class="orientationOverlay hidden">
+  <div class="rotateIcon">↻</div>
+  <div class="orientationTitle">ROTATE PHONE</div>
+  <div class="orientationText">
+    APEX GP is designed for landscape mode.
+  </div>
+  <button id="orientationBtn">ENTER LANDSCAPE</button>
+</div>
+
     <div id="telemetry">
       <div class="panel">
         <div id="speedBlock"><div class="num mono" id="hudSpeed">0</div><div class="unit">KM/H</div></div>
@@ -224,6 +917,43 @@
         <div id="draftLight">DRAFT</div>
       </div>
     </div>
+  </div>
+
+  <div id="mobileControls">
+
+    <!-- STEERING -->
+    <div class="mobileSide" id="steeringControls">
+  
+      <button class="touchBtn" id="leftBtn">
+        ←
+      </button>
+  
+      <button class="touchBtn" id="rightBtn">
+        →
+      </button>
+  
+    </div>
+  
+  
+    <!-- THROTTLE / BRAKE -->
+    <div class="mobileSide" id="driveControls">
+  
+      <button class="touchBtn" id="throttleBtn">
+        GO
+      </button>
+  
+      <button class="touchBtn" id="brakeBtn">
+        BRAKE
+      </button>
+  
+    </div>
+  
+  
+    <!-- DRS -->
+    <button class="touchBtn" id="drsBtn">
+      DRS
+    </button>
+  
   </div>
 
   <div id="countdown" class="hidden"><div class="num mono" id="countNum">3</div></div>
@@ -258,6 +988,13 @@
   </div>
 
   <footer class="credit">APEX GP — top-down arcade simulator</footer>
+
+
+<!-- TILT STEERING -->
+<button id="tiltBtn" class="touchBtn">
+  TILT
+</button>
+
 </div>
 
 <script>
@@ -432,6 +1169,10 @@ cars.push(new Car("RIVAL B", "#FFB800", false, 6,  16, 0.945, 0.85));
 cars.push(new Car("RIVAL C", "#8B5CF6", false, 8, -16, 0.925, 0.7));
 const player = cars[0];
 
+const isMobile =
+  window.matchMedia("(pointer: coarse)").matches ||
+  window.innerWidth < 768;
+
 const state = {
   phase: "start",
   raceTime: 0,
@@ -442,7 +1183,85 @@ const state = {
   showGhost: true,
 };
 
+
+
 const input = {up:false, down:false, left:false, right:false, shift:false};
+
+
+/* ============================== MOBILE ORIENTATION ============================== */
+
+const orientationOverlay = document.getElementById('orientationOverlay');
+const orientationBtn = document.getElementById('orientationBtn');
+
+const mobileDevice =
+  window.matchMedia("(pointer: coarse)").matches ||
+  window.innerWidth < 768;
+
+async function requestLandscape() {
+  if (!mobileDevice) return;
+
+  try {
+    /*
+     * Fullscreen is required by many mobile browsers before
+     * screen.orientation.lock() is allowed.
+     */
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      await document.documentElement.requestFullscreen();
+    }
+  } catch (e) {
+    // Fullscreen may be blocked or unsupported.
+  }
+
+  try {
+    if (screen.orientation && screen.orientation.lock) {
+      await screen.orientation.lock("landscape");
+    }
+  } catch (e) {
+    /*
+     * iOS Safari and some browsers don't support orientation locking.
+     * The rotate overlay will handle those devices.
+     */
+  }
+
+  updateOrientationOverlay();
+}
+
+function isLandscape() {
+  return window.innerWidth >= window.innerHeight;
+}
+
+function updateOrientationOverlay() {
+  if (!mobileDevice) {
+    orientationOverlay.classList.add('hidden');
+    return;
+  }
+
+  if (isLandscape()) {
+    orientationOverlay.classList.add('hidden');
+  } else {
+    orientationOverlay.classList.remove('hidden');
+  }
+}
+
+orientationBtn.addEventListener('click', async () => {
+  await requestLandscape();
+});
+
+window.addEventListener('orientationchange', () => {
+  setTimeout(updateOrientationOverlay, 150);
+});
+
+window.addEventListener('resize', () => {
+  updateOrientationOverlay();
+});
+
+/*
+ * Don't block desktop.
+ * On mobile, show the rotate screen if currently portrait.
+ */
+updateOrientationOverlay();
+
+
 
 let ghostData = null;
 let ghostRecording = [];
@@ -510,7 +1329,15 @@ window.addEventListener('keydown', (e) => {
     case 'ArrowLeft': case 'a': case 'A': input.left=true; break;
     case 'ArrowRight': case 'd': case 'D': input.right=true; break;
     case 'Shift': input.shift=true; break;
-    case 'Enter': if(state.phase==='start') beginCountdown(); break;
+    case 'Enter':
+  if(state.phase==='start'){
+    if(mobileDevice){
+      requestLandscape();
+    } else {
+      beginCountdown();
+    }
+  }
+  break;
     case 'r': case 'R': resetRace(); break;
     case 'm': case 'M': muted = !muted; break;
     case 'c': case 'C': state.cameraMode = state.cameraMode==='overview' ? 'chase' : 'overview'; break;
@@ -526,7 +1353,24 @@ window.addEventListener('keyup', (e) => {
     case 'Shift': input.shift=false; break;
   }
 });
-document.getElementById('startBtn').addEventListener('click', () => { initAudio(); beginCountdown(); });
+document.getElementById('startBtn').addEventListener('click', async () => {
+  initAudio();
+
+  if (mobileDevice) {
+    await requestLandscape();
+
+    // Give the browser a moment to rotate.
+    setTimeout(() => {
+      if (isLandscape()) {
+        beginCountdown();
+      }
+    }, 300);
+
+    return;
+  }
+
+  beginCountdown();
+});
 document.getElementById('restartBtn').addEventListener('click', resetRace);
 document.querySelectorAll('.diffBtn').forEach(btn=>{
   btn.addEventListener('click', () => {
@@ -1097,7 +1941,252 @@ function loop(now){
 }
 requestAnimationFrame(loop);
 
+/* ============================== MOBILE TOUCH INPUT ============================== */
+
+function setupTouchButton(id, inputKey) {
+  const btn = document.getElementById(id);
+
+  if (!btn) return;
+
+  const press = (e) => {
+    e.preventDefault();
+
+    if (tiltEnabled && (inputKey === 'left' || inputKey === 'right')) {
+  disableTilt();
+}
+
+    initAudio();
+
+    if (actx && actx.state === 'suspended') {
+      actx.resume();
+    }
+
+    input[inputKey] = true;
+    btn.classList.add('pressed');
+  };
+
+  const release = (e) => {
+    e.preventDefault();
+
+    input[inputKey] = false;
+    btn.classList.remove('pressed');
+  };
+
+/* ============================== TILT STEERING ============================== */
+
+let tiltEnabled = false;
+let tiltSupported = false;
+let tiltCenter = 0;
+let tiltValue = 0;
+
+const tiltBtn = document.getElementById('tiltBtn');
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+/*
+ * Convert phone rotation into steering.
+ *
+ * gamma:
+ *   negative = tilted left
+ *   positive = tilted right
+ *
+ * The deadzone prevents tiny movements from constantly
+ * moving the steering.
+ */
+function calculateTiltSteering(gamma) {
+  const DEADZONE = 5;
+  const MAX_TILT = 28;
+
+  let offset = gamma - tiltCenter;
+
+  if (Math.abs(offset) < DEADZONE) {
+    return 0;
+  }
+
+  const direction = offset > 0 ? 1 : -1;
+
+  const amount =
+    (Math.abs(offset) - DEADZONE) /
+    (MAX_TILT - DEADZONE);
+
+  return direction * clamp(amount, 0, 1);
+}
+
+
+function handleDeviceOrientation(event) {
+
+  if (!tiltEnabled) return;
+
+  if (typeof event.gamma !== 'number') return;
+
+  tiltValue = calculateTiltSteering(event.gamma);
+
+  /*
+   * Tilt replaces the steering buttons while active.
+   * Keyboard steering still works on desktop.
+   */
+  if (isMobile) {
+
+    if (tiltValue < -0.05) {
+      input.left = true;
+      input.right = false;
+    }
+
+    else if (tiltValue > 0.05) {
+      input.left = false;
+      input.right = true;
+    }
+
+    else {
+      input.left = false;
+      input.right = false;
+    }
+  }
+}
+
+
+function calibrateTilt() {
+
+  /*
+   * DeviceOrientationEvent gives gamma as the phone's
+   * left/right tilt angle.
+   */
+
+  const calibrationHandler = (event) => {
+
+    if (typeof event.gamma !== 'number') return;
+
+    tiltCenter = event.gamma;
+
+    window.removeEventListener(
+      'deviceorientation',
+      calibrationHandler
+    );
+  };
+
+  window.addEventListener(
+    'deviceorientation',
+    calibrationHandler
+  );
+}
+
+
+async function enableTilt() {
+
+  if (!isMobile) return;
+
+  /*
+   * iOS requires explicit permission from a user gesture.
+   */
+  if (
+    typeof DeviceOrientationEvent !== 'undefined' &&
+    typeof DeviceOrientationEvent.requestPermission === 'function'
+  ) {
+
+    try {
+
+      const permission =
+        await DeviceOrientationEvent.requestPermission();
+
+      if (permission !== 'granted') {
+        tiltEnabled = false;
+        tiltBtn.classList.remove('active');
+        tiltBtn.textContent = 'TILT';
+        return;
+      }
+
+    } catch (error) {
+
+      console.warn(
+        'Tilt permission failed:',
+        error
+      );
+
+      return;
+    }
+  }
+
+  if (typeof window.DeviceOrientationEvent === 'undefined') {
+
+    alert('Tilt steering is not supported on this device.');
+
+    return;
+  }
+
+  tiltSupported = true;
+  tiltEnabled = true;
+
+  tiltBtn.classList.add('active');
+  tiltBtn.textContent = 'TILT ON';
+
+  calibrateTilt();
+
+  window.addEventListener(
+    'deviceorientation',
+    handleDeviceOrientation,
+    true
+  );
+}
+
+
+function disableTilt() {
+
+  tiltEnabled = false;
+
+  input.left = false;
+  input.right = false;
+
+  tiltBtn.classList.remove('active');
+  tiltBtn.textContent = 'TILT';
+
+  window.removeEventListener(
+    'deviceorientation',
+    handleDeviceOrientation,
+    true
+  );
+}
+
+
+tiltBtn.addEventListener('click', async () => {
+
+  if (tiltEnabled) {
+    disableTilt();
+  } else {
+    await enableTilt();
+  }
+
+});
+
+
+  btn.addEventListener('pointerdown', press);
+  btn.addEventListener('pointerup', release);
+  btn.addEventListener('pointercancel', release);
+
+  btn.addEventListener('pointerleave', (e) => {
+    if (e.buttons === 0) {
+      release(e);
+    }
+  });
+}
+
+setupTouchButton('leftBtn', 'left');
+setupTouchButton('rightBtn', 'right');
+
+setupTouchButton('throttleBtn', 'up');
+setupTouchButton('brakeBtn', 'down');
+
+setupTouchButton('drsBtn', 'shift');
+
+document.addEventListener('touchmove', (e) => {
+  if (state.phase === 'racing') {
+    e.preventDefault();
+  }
+}, { passive: false });
+
 })();
+
 </script>
 </body>
 </html>
