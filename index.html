@@ -1639,15 +1639,28 @@ function drawTrack(){
   wctx.save();
   wctx.fillStyle = grassPattern;
   wctx.fillRect(0,0,w,h);
-  wctx.translate(w/2, h/2);
-  if(state.cameraMode === 'chase'){
-    wctx.rotate(-(camera.angle) - Math.PI/2);
-    wctx.scale(1.55, 1.55);
-    wctx.translate(-player.x, -player.y);
-  } else {
-    wctx.scale(camera.zoom, camera.zoom);
-    wctx.translate(-camera.x, -camera.y);
-  }
+ wctx.translate(w / 2, h / 2);
+
+if (state.cameraMode === 'chase') {
+
+  // Chase camera follows the car but DOES NOT rotate the world.
+  const lookAhead = Math.min(player.speed * 0.18, 85);
+
+  const cameraX =
+    player.x + Math.cos(player.angle) * lookAhead;
+
+  const cameraY =
+    player.y + Math.sin(player.angle) * lookAhead;
+
+  wctx.scale(1.55, 1.55);
+  wctx.translate(-cameraX, -cameraY);
+
+} else {
+
+  // Normal overview camera
+  wctx.scale(camera.zoom, camera.zoom);
+  wctx.translate(-camera.x, -camera.y);
+}
 
   // track surface
   wctx.beginPath();
